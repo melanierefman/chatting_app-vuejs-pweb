@@ -7,17 +7,19 @@ import { slateEditor } from '@payloadcms/richtext-slate'
 import { buildConfig } from 'payload/config'
 
 import Users from './collections/Users'
-import Chats from './collections/Chats'
+import Friends from './collections/Friends'
+import Messages from './collections/Messages'
+import Members from './collections/Members'
 
 export default buildConfig({
   admin: {
     user: Users.slug,
     bundler: webpackBundler(),
   },
-  cors: ["http://localhost:5174/"],
-  csrf: ["http://localhost:5174/"],
   editor: slateEditor({}),
-  collections: [Users, Chats],
+  collections: [Users, Members, Friends, Messages],
+  csrf: ["http://localhost:8080/"],
+  cors: ["http://localhost:8080/"],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
